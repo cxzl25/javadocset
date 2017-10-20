@@ -60,23 +60,23 @@
         NSString *name = [anchor innerText];
         NSString *dtClassName = [parent className];
         dtClassName = (dtClassName) ? dtClassName : @"";
-        if([text rangeOfString:@"Class in" options:NSCaseInsensitiveSearch].location != NSNotFound || [text rangeOfString:@"- class" options:NSCaseInsensitiveSearch].location != NSNotFound || [dtClassName hasSuffix:@"class"])
+        if([text rangeOfString:@"Class in" options:NSCaseInsensitiveSearch].location != NSNotFound || [text rangeOfString:@"- class" options:NSCaseInsensitiveSearch].location != NSNotFound || [dtClassName hasSuffix:@"class"] || [text rangeOfString:@" 中的 类"].location != NSNotFound )
         {
             type = @"Class";
         }
-        else if([text rangeOfString:@"Static method in" options:NSCaseInsensitiveSearch].location != NSNotFound || [dtClassName hasSuffix:@"method"])
+        else if([text rangeOfString:@"Static method in" options:NSCaseInsensitiveSearch].location != NSNotFound || [dtClassName hasSuffix:@"method"] || [text rangeOfString:@" 中的静态方法"].location != NSNotFound)
         {
             type = @"Method";
         }
-        else if([text rangeOfString:@"Static variable in" options:NSCaseInsensitiveSearch].location != NSNotFound || [dtClassName hasSuffix:@"field"] || [text rangeOfString:@"Field in" options:NSCaseInsensitiveSearch].location != NSNotFound)
+        else if([text rangeOfString:@"Static variable in" options:NSCaseInsensitiveSearch].location != NSNotFound || [dtClassName hasSuffix:@"field"] || [text rangeOfString:@"Field in" options:NSCaseInsensitiveSearch].location != NSNotFound || [text rangeOfString:@" 中的静态变量"].location != NSNotFound|| [text rangeOfString:@" 中的变量"].location != NSNotFound)
         {
             type = @"Field";
         }
-        else if([text rangeOfString:@"Constructor" options:NSCaseInsensitiveSearch].location != NSNotFound || [dtClassName hasSuffix:@"constructor"])
+        else if([text rangeOfString:@"Constructor" options:NSCaseInsensitiveSearch].location != NSNotFound || [dtClassName hasSuffix:@"constructor"] || [text rangeOfString:@" 的构造方法" options:NSCaseInsensitiveSearch].location != NSNotFound)
         {
             type = @"Constructor";
         }
-        else if([text rangeOfString:@"Method in" options:NSCaseInsensitiveSearch].location != NSNotFound)
+        else if([text rangeOfString:@"Method in" options:NSCaseInsensitiveSearch].location != NSNotFound || [text rangeOfString:@" 中的方法"].location != NSNotFound )
         {
             type = @"Method";
         }
@@ -84,19 +84,19 @@
         {
             type = @"Field";
         }
-        else if([text rangeOfString:@"Interface in" options:NSCaseInsensitiveSearch].location != NSNotFound || [text rangeOfString:@"- interface" options:NSCaseInsensitiveSearch].location != NSNotFound || [dtClassName hasSuffix:@"interface"])
+        else if([text rangeOfString:@"Interface in" options:NSCaseInsensitiveSearch].location != NSNotFound || [text rangeOfString:@"- interface" options:NSCaseInsensitiveSearch].location != NSNotFound || [dtClassName hasSuffix:@"interface"] || [text rangeOfString:@" 中的 接口"].location != NSNotFound )
         {
             type = @"Interface";
         }
-        else if([text rangeOfString:@"Exception in" options:NSCaseInsensitiveSearch].location != NSNotFound || [text rangeOfString:@"- exception" options:NSCaseInsensitiveSearch].location != NSNotFound || [dtClassName hasSuffix:@"exception"])
+        else if([text rangeOfString:@"Exception in" options:NSCaseInsensitiveSearch].location != NSNotFound || [text rangeOfString:@"- exception" options:NSCaseInsensitiveSearch].location != NSNotFound || [dtClassName hasSuffix:@"exception"] || [text rangeOfString:@" 中的 异常"].location != NSNotFound )
         {
             type = @"Exception";
         }
-        else if([text rangeOfString:@"Error in" options:NSCaseInsensitiveSearch].location != NSNotFound || [text rangeOfString:@"- error" options:NSCaseInsensitiveSearch].location != NSNotFound || [dtClassName hasSuffix:@"error"])
+        else if([text rangeOfString:@"Error in" options:NSCaseInsensitiveSearch].location != NSNotFound || [text rangeOfString:@"- error" options:NSCaseInsensitiveSearch].location != NSNotFound || [dtClassName hasSuffix:@"error"]|| [text rangeOfString:@" 中的 错误"].location != NSNotFound )
         {
             type = @"Error";
         }
-        else if([text rangeOfString:@"Enum in" options:NSCaseInsensitiveSearch].location != NSNotFound || [text rangeOfString:@"- enum" options:NSCaseInsensitiveSearch].location != NSNotFound || [dtClassName hasSuffix:@"enum"])
+        else if([text rangeOfString:@"Enum in" options:NSCaseInsensitiveSearch].location != NSNotFound || [text rangeOfString:@"- enum" options:NSCaseInsensitiveSearch].location != NSNotFound || [dtClassName hasSuffix:@"enum"] || [text rangeOfString:@" 中的 枚举"].location != NSNotFound )
         {
             type = @"Enum";
         }
@@ -104,11 +104,11 @@
         {
             type = @"Trait";
         }
-        else if([text rangeOfString:@"Annotation Type" options:NSCaseInsensitiveSearch].location != NSNotFound || [dtClassName hasSuffix:@"annotation"])
+        else if([text rangeOfString:@"Annotation Type" options:NSCaseInsensitiveSearch].location != NSNotFound || [dtClassName hasSuffix:@"annotation"]|| [text rangeOfString:@" 中的 注释类型"].location != NSNotFound)
         {
             type = @"Notation";
         }
-        else if([text rangeOfString:@"package" options:NSCaseInsensitiveSearch].location != NSNotFound || [dtClassName hasSuffix:@"package"])
+        else if([text rangeOfString:@"package" options:NSCaseInsensitiveSearch].location != NSNotFound || [dtClassName hasSuffix:@"package"] || [text rangeOfString:@" 软件包 "].location != NSNotFound)
         {
             type = @"Package";
         }
